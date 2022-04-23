@@ -1,0 +1,22 @@
+*{
+    font-family: Arial;
+    font-size: 25px;
+}
+button{
+    font-size: 25px;
+}
+button a{
+    text-decoration: none;
+    color: black;
+}
+.calculator_back{
+    color: white;
+}
+h1{
+    font-size: 1.75em;
+}
+[settings]{
+    float: right;
+    position: relative;
+    bottom: 20px;
+}
