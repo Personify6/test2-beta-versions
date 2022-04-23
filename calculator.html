@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Calculator</title>
+        <link rel="stylesheet" type="text/css" href="style/styles.css">
+        <style type="text/css">
+            form{
+                width: 21%;
+            }
+            input[type="button"]{
+                width: 50px;
+                height: 50px;
+                margin: 5px;
+                border: 3px solid #000;
+                background: #00f;
+                color: #fff;
+            }
+            button{
+                border: 3px solid #000;
+                background: #00f;
+            }
+            body{
+                background: #f00;
+            }
+            #C{
+                width: 100%;
+            }
+            #display{
+                width: 100%;
+            }
+            a{
+                text-decoration: none;
+                color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <form name="cal">
+            <input name="display" id="display" readonly><br><br>
+            <input type="button" value="√" onclick="cal.display.value = Math.sqrt(eval(cal.display.value))">
+            <input type="button" value="x²" onclick="cal.display.value = Math.pow(eval(cal.display.value), 2)">
+            <input type="button" value="⌫" onclick="cal.display.value = cal.display.value.substring(0, cal.display.value.length - 1)">
+            <input type="button" value="/" onclick="cal.display.value += '/'">
+            <br><br>
+            <input type="button" value="7" onclick="cal.display.value += '7'">
+            <input type="button" value="8" onclick="cal.display.value += '8'">
+            <input type="button" value="9" onclick="cal.display.value += '9'">
+            <input type="button" value="*" onclick="cal.display.value += '*'">
+            <br>
+            <br>
+            <input type="button" value="4" onclick="cal.display.value += '4'">
+            <input type="button" value="5" onclick="cal.display.value += '5'">
+            <input type="button" value="6" onclick="cal.display.value += '6'">
+            <input type="button" value="-" onclick="cal.display.value += '-'">
+            <br>
+            <br>
+            <input type="button" value="1" onclick="cal.display.value += '1'">
+            <input type="button" value="2" onclick="cal.display.value += '2'">
+            <input type="button" value="3" onclick="cal.display.value += '3'">
+            <input type="button" value="+" onclick="cal.display.value += '+'">
+            <br><br>
+            <input type="button" value="%" onclick="cal.display.value = (cal.display.value)/100">
+            <input type="button" value="0" onclick="cal.display.value += '0'">
+            <input type="button" value="." onclick="cal.display.value += '.'">
+            <input type="button" value="=" onclick="cal.display.value = eval(cal.display.value)">
+            <br><br>
+            <input type="button" id="C" value="C" onclick="cal.display.value = ''">
+        </form>
+        <br><br><br>
+        <button><a href="index.html" class="calculator_back">Back</a></button>
+    </body>
+</html>
