@@ -21,5 +21,15 @@
         <a href="customize-page.html">Customize your page!</a>
         <script src="scripts/check-icon.js"></script>
         <script src="scripts/settings.js"></script>
+        <script>
+            var aEls = document.getElementsByTagName("a");
+            for(var i = 0; i < aEls.length; i++){
+                if(localStorage.getItem("dark-mode") == "yes"){
+                    aEls[i].style.color = "white";
+                } else if(localStorage.getItem("dark-mode") == "no"){
+                    aEls[i].style.color = "#00f";
+                }
+            }
+        </script>
     </body>
 </html>
