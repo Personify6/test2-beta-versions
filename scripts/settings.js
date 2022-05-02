@@ -1,47 +1,58 @@
 /*
     DARK MODE
 */
+
+
+// This is executed before the DOM is ready
 var darkIsOn = localStorage.getItem("dark-mode");
-var turnOnOff = document.getElementById("dark-yes");
+
 if(darkIsOn == null){
-    localStorage.setItem("dark-mode", "no");
+    darkIsOn = window.matchMedia("(prefers-color-scheme: dark)").matches ? "on" : "off";
+    localStorage.setItem("dark-mode", darkIsOn);
 }
-darkIsOn = localStorage.getItem("dark-mode");
+
 function setOn(){
-    document.body.style.backgroundColor = "black";
-    document.body.style.color = "white";
+    document.body.className="dark-mode"
 }
+
 function setOff(){
-    document.body.style.backgroundColor = "white";
-    document.body.style.color = "black";
+    document.body.className="light-mode"
 }
+
 window.addEventListener("load", () => {
+    // We can only find these after the dom is ready
+    var turnOnOff = document.getElementById("dark-yes");
+
     switch(darkIsOn){
         case "yes": setOn(); turnOnOff.innerHTML = "Turn Off"; break;
         case "no": setOff(); turnOnOff.innerHTML = "Turn On"; break;
     }
+
+    var i = 0;
+    turnOnOff.addEventListener("click", (e) => {
+        i += 1;
+        if(darkIsOn == "yes"){
+            localStorage.setItem("dark-mode", "no");
+            onOrOff("off");
+            turnOnOff.innerHTML = "Turn On";
+            location.reload();
+        } else if(darkIsOn == "no"){
+            localStorage.setItem("dark-mode", "yes");
+            onOrOff("on");
+            turnOnOff.innerHTML = "Turn Off";
+            location.reload();
+        } else{
+            console.error("Not working");
+        }
+        console.log(i + " Event fired: " + darkIsOn);
+    });
 });
+
 function onOrOff(onOrOff1){
     switch(onOrOff1){
         case "on": setOn(); break;
         case "off": setOff(); break;
     }
 }
-var i = 0;
-turnOnOff.addEventListener("click", (e) => {
-    i += 1;
-    if(darkIsOn == "yes"){
-        localStorage.setItem("dark-mode", "no");
-        onOrOff("off");
-        turnOnOff.innerHTML = "Turn On";
-        location.reload();
-    } else if(darkIsOn == "no"){
-        localStorage.setItem("dark-mode", "yes");
-        onOrOff("on");
-        turnOnOff.innerHTML = "Turn Off";
-        location.reload();
-    } else{
-        console.error("Not working");
-    }
-    console.log(i + " Event fired: " + darkIsOn);
-});
+
+onOrOff(darkIsOn);

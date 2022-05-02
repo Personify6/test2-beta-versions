@@ -4,15 +4,15 @@
         <title>Test2 Background Changer</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="style/styles.css">
+        <script src="scripts/settings.js"></script>
     </head>
-    <body>
+    <body class="light-mode">
         <form name="try_this">
             <p please style="background-color: white;">Please enter a hexadecimal pattern:</p>
             <input name="code" title="A hashtag followed by six or three numbers or letters from A-F (Examples: #FE3152, #45124A)" pattern="#[a-fA-F0-9]{3}|#[a-fA-F0-9]{6}">
             <button type="submit">Try It!</button>
         </form><br>
         <button><a href="index.html">Back</a></button>
-        <script src="scripts/settings.js"></script>
         <script type="text/javascript">
             var tryhuh = document.querySelector("p[please]");
             tryhuh.style.color = "black";
