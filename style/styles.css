@@ -20,3 +20,13 @@ h1{
     position: relative;
     bottom: 20px;
 }
+.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+.light-mode a {
+    color: #0ff; 
+}
+.neutral-mode {
+    background-color: #6B6B6B;
+}
