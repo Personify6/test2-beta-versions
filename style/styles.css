@@ -29,8 +29,12 @@ h1{
 }
 
 .light-mode a {
-    color: #0ff; 
+    color: #00f; 
 }
 .neutral-mode {
     background-color: #6B6B6B;
+}
+
+button a{
+    color: black;
 }
