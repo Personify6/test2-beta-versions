@@ -12,16 +12,19 @@ if(darkIsOn == null){
 }
 
 function setOn(){
-    document.body.className="dark-mode"
+    document.documentElement.className="dark-mode";
 }
 
 function setOff(){
-    document.body.className="light-mode"
+    document.documentElement.className="light-mode";
 }
 
 window.addEventListener("load", () => {
     // We can only find these after the dom is ready
     var turnOnOff = document.getElementById("dark-yes");
+    if (!turnOnOff) {
+        return;
+    }
 
     switch(darkIsOn){
         case "yes": setOn(); turnOnOff.innerHTML = "Turn Off"; break;
