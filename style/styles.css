@@ -22,8 +22,12 @@ h1{
 }
 .dark-mode {
     background-color: #121212;
+}
+
+.dark-mode, .dark-mode a {
     color: white;
 }
+
 .light-mode a {
     color: #0ff; 
 }
