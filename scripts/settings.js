@@ -4,12 +4,12 @@
 
 
 // This is executed before the DOM is ready
-var darkIsOn = localStorage.getItem("dark-mode");
+var darkModeToggle = localStorage.getItem("dark-mode");
 
 // Reset dark mode option using browser preference
-if(!["on", "off"].includes(darkIsOn)){
-    darkIsOn = window.matchMedia("(prefers-color-scheme: dark)").matches ? "on" : "off";
-    localStorage.setItem("dark-mode", darkIsOn);
+if(!["on", "off"].includes(darkModeToggle)){
+    darkModeToggle = window.matchMedia("(prefers-color-scheme: dark)").matches ? "on" : "off";
+    localStorage.setItem("dark-mode", darkModeToggle);
 }
 
 function setOn(){
@@ -27,28 +27,26 @@ window.addEventListener("load", () => {
         return;
     }
 
-    switch(darkIsOn){
-        case "yes": setOn(); turnOnOff.innerHTML = "Turn Off"; break;
-        case "no": setOff(); turnOnOff.innerHTML = "Turn On"; break;
+    switch(darkModeToggle){
+        case "on": turnOnOff.innerHTML = "Turn Off"; break;
+        case "off": turnOnOff.innerHTML = "Turn On"; break;
     }
 
     var i = 0;
     turnOnOff.addEventListener("click", (e) => {
         i += 1;
-        if(darkIsOn == "yes"){
+        if(darkModeToggle == "on"){
             localStorage.setItem("dark-mode", "on");
             onOrOff("off");
-            turnOnOff.innerHTML = "Turn On";
             location.reload();
-        } else if(darkIsOn == "no"){
-            localStorage.setItem("dark-mode", "yes");
+        } else if(darkModeToggle == "off"){
+            localStorage.setItem("dark-mode", "off");
             onOrOff("on");
-            turnOnOff.innerHTML = "Turn Off";
             location.reload();
         } else{
             console.error("Not working");
         }
-        console.log(i + " Event fired: " + darkIsOn);
+        console.log(i + " Event fired: " + darkModeToggle);
     });
 });
 
@@ -61,4 +59,4 @@ function onOrOff(onOrOff1){
     setOff();
 }
 
-onOrOff(darkIsOn);
+onOrOff(darkModeToggle);
