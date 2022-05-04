@@ -35,13 +35,11 @@ window.addEventListener("load", () => {
     var i = 0;
     turnOnOff.addEventListener("click", (e) => {
         i += 1;
-        if(darkModeToggle == "on"){
+        if(darkModeToggle == "off"){
             localStorage.setItem("dark-mode", "on");
-            onOrOff("off");
             location.reload();
-        } else if(darkModeToggle == "off"){
+        } else if(darkModeToggle == "on"){
             localStorage.setItem("dark-mode", "off");
-            onOrOff("on");
             location.reload();
         } else{
             console.error("Not working");
