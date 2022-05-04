@@ -6,7 +6,8 @@
 // This is executed before the DOM is ready
 var darkIsOn = localStorage.getItem("dark-mode");
 
-if(darkIsOn == null){
+// Reset dark mode option using browser preference
+if(!["on", "off"].includes(darkIsOn)){
     darkIsOn = window.matchMedia("(prefers-color-scheme: dark)").matches ? "on" : "off";
     localStorage.setItem("dark-mode", darkIsOn);
 }
@@ -35,7 +36,7 @@ window.addEventListener("load", () => {
     turnOnOff.addEventListener("click", (e) => {
         i += 1;
         if(darkIsOn == "yes"){
-            localStorage.setItem("dark-mode", "no");
+            localStorage.setItem("dark-mode", "on");
             onOrOff("off");
             turnOnOff.innerHTML = "Turn On";
             location.reload();
@@ -52,10 +53,12 @@ window.addEventListener("load", () => {
 });
 
 function onOrOff(onOrOff1){
-    switch(onOrOff1){
-        case "on": setOn(); break;
-        case "off": setOff(); break;
+    if (onOrOff1 === "on") {
+        setOn();
+        return;
     }
+
+    setOff();
 }
 
 onOrOff(darkIsOn);
