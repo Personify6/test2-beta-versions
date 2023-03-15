@@ -27,8 +27,8 @@
             var buttons = document.getElementsByTagName("button");
             form.addEventListener("submit", (e) => {
                 e.preventDefault();
-                document.body.style.backgroundColor = form.background.value;
-                document.body.style.color = form.textcolor.value;
+                document.documentElement.style.backgroundColor = form.background.value;
+                document.documentElement.style.color = form.textcolor.value;
                 for(var i = 0; i < buttons.length; i++){
                     buttons[i].style.backgroundColor = form.buttonbackground.value;
                     buttons[i].style.color = form.buttontext.value;
