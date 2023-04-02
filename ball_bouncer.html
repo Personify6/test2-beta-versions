@@ -2,19 +2,74 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Title</title>
+        <title>Ball Bouncer</title>
         <link rel="stylesheet" type="text/css" href="style/styles.css">
         <style type="text/css">
-            .calculator_back{
+            .calculator_back {
                 color: #000 !important;
                 z-index: 20;
+            }
+            #ball_area {
+                background-color: #444464;
             }
         </style>
         <script src="scripts/settings.js"></script>
     </head>
     <body>
-        <h1>Work in progress!</h1>
+        <label for="ball_speed">Ball Speed(Not working):</label><input name="ball_speed" id="ball_speed" type="number" value="3"><br>
+        <label for="canvas_background">Canvas Background:</label><input type="color" name="canvas_background" id="canvas_background" value="#444464"><br>
+        <label for="ball_background">Ball Colour:</label><input type="color" name="ball_background" id="ball_background" value="#ff0000"><br><br>
+        <button id="apply_styles">Update</button><br><br>
+        <canvas id="ball_area" width="600" height="300"></canvas>
         <br><br><br>
         <button><a href="index.html" class="calculator_back">Back</a></button>
+        <script type="text/javascript">
+            var canvas = document.getElementById("ball_area");
+            var ctx = canvas.getContext("2d");
+            var ballSpeed = parseInt(document.getElementById("ball_speed").value, 10);
+            var canvasBG = document.getElementById("canvas_background").value;
+            var ballColour = document.getElementById("ball_background").value;
+            var updateButton = document.getElementById("apply_styles");
+
+            updateButton.addEventListener("click", () => {
+                ballSpeed = parseInt(document.getElementById("ball_speed").value, 10);
+                canvasBG = document.getElementById("canvas_background").value;
+                ballColour = document.getElementById("ball_background").value;
+            });
+
+            var x = canvas.width / 2;
+            var y = canvas.height / 2;
+            var dx = ballSpeed;
+            var dy = ballSpeed * -1;
+            var ballRadius = 7;
+
+            function drawBall(){
+                ctx.beginPath();
+                ctx.fillStyle = ballColour;
+                ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function update(){
+                ctx.fillStyle = canvasBG;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                drawBall();
+                    
+                if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+                    dx = -dx;
+                }
+                if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+                    dy = -dy;
+                }
+                
+                x += dx;
+                y += dy;
+
+                requestAnimationFrame(update);
+            }
+            update();
+        </script>
     </body>
 </html>
