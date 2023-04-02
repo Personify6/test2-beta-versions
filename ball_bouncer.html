@@ -16,7 +16,7 @@
         <script src="scripts/settings.js"></script>
     </head>
     <body>
-        <label for="ball_speed">Ball Speed(Not working):</label><input name="ball_speed" id="ball_speed" type="number" value="3"><br>
+        <label for="ball_speed">Ball Speed:</label><input name="ball_speed" id="ball_speed" type="number" value="3"><br>
         <label for="canvas_background">Canvas Background:</label><input type="color" name="canvas_background" id="canvas_background" value="#444464"><br>
         <label for="ball_background">Ball Colour:</label><input type="color" name="ball_background" id="ball_background" value="#ff0000"><br><br>
         <button id="apply_styles">Update</button><br><br>
@@ -31,17 +31,19 @@
             var ballColour = document.getElementById("ball_background").value;
             var updateButton = document.getElementById("apply_styles");
 
-            updateButton.addEventListener("click", () => {
-                ballSpeed = parseInt(document.getElementById("ball_speed").value, 10);
-                canvasBG = document.getElementById("canvas_background").value;
-                ballColour = document.getElementById("ball_background").value;
-            });
-
             var x = canvas.width / 2;
             var y = canvas.height / 2;
             var dx = ballSpeed;
             var dy = ballSpeed * -1;
             var ballRadius = 7;
+            var xNegative = false;
+
+            updateButton.addEventListener("click", () => {
+                ballSpeed = parseInt(document.getElementById("ball_speed").value, 10);
+                canvasBG = document.getElementById("canvas_background").value;
+                ballColour = document.getElementById("ball_background").value;
+                dx = dx < 0 ? -ballSpeed : ballSpeed;
+            });
 
             function drawBall(){
                 ctx.beginPath();
