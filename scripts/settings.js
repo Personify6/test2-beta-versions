@@ -3,7 +3,7 @@
 */
 
 
-var version = "1.5 Beta 5b";
+var version = "1.5 Pre-Release";
 // This is executed before the DOM is ready
 var darkModeToggle = localStorage.getItem("dark-mode");
 
