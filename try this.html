@@ -14,6 +14,9 @@
                 background: white;
                 color: black;
             }
+            #info{
+                margin-left: 5px;
+            }
         </style>
         <script src="scripts/settings.js"></script>
     </head>
@@ -21,15 +24,21 @@
         <form name="try_this">
             <p please style="background: white; color: black;">Please enter a hexadecimal pattern:</p>
             <input name="code" title="A hashtag followed by six or three numbers or letters from A-F (Examples: #FE3152, #45124A)" pattern="#[a-fA-F0-9]{3}|#[a-fA-F0-9]{6}">
-            <button type="submit">Try It!</button>
+            <button type="submit">Try It!</button><button id="info">?</button>
         </form><br>
         <button><a href="index.html">Back</a></button>
         <script type="text/javascript">
             var tryhuh = document.querySelector("p[please]");
+            var infoButton = document.getElementById("info");
+
             tryhuh.style.color = "black";
             document.try_this.addEventListener("submit", (e) => {
                 e.preventDefault();
                 document.documentElement.style.backgroundColor = document.try_this.code.value;
+            });
+
+            infoButton.addEventListener("click", () => {
+                alert("A hashtag followed by six or three numbers or letters from A-F (Examples: #FE3152, #45124A)");
             });
         </script>
     </body>

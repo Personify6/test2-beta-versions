@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Alert Maker</title>
+        <link rel="icon" href="images/icon.png">
+        <link rel="stylesheet" type="text/css" href="style/styles.css">
+        <script src="scripts/settings.js"></script>
+        <style type="text/css">
+            #overlay{
+                display: none;
+                background-color: gray;
+                opacity: 40%;
+                z-index: 30;
+            }
+            #alert-box{
+                width: 50%;
+                height: 30%;
+                border: 2px solid gray;
+                z-index: 50;
+                overflow: auto;
+            }
+            .dark-mode #alert-box{
+                background-color: #000;
+                color: white;
+            }
+            .light-mode #alert-box{
+                background-color: white;
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>(Under construction)</h1>
+        <h3>(You need the latest version of your browser to run this)</h3>
+        <button id="open-button">Open Alert</button><br><br>
+
+        <div id="overlay"></div>
+        <dialog id="alert-box">
+            <h2>Title</h2>
+            <span id="alert-text">Hi, this is a test at the moment! In the future, you will be able to edit this alert box.</span><br><br>
+            <button id="close-button">Close</button>
+        </dialog>
+        <br><button><a href="index.html">Back</a></button>
+        <script type="text/javascript">
+            var closeButton = document.getElementById("close-button");
+            var overlay = document.getElementById("overlay");
+            var openButton = document.getElementById("open-button");
+            var dialog = document.getElementById("alert-box");
+            var screenWidth = window.innerWidth;
+            var screenHeight = window.innerHeight;
+
+            openButton.addEventListener("click", () => {
+                if(!dialog.getAttribute("open")){
+                    dialog.setAttribute("open", "open");
+                    overlay.style.display = "block";
+                    overlay.style.width = screenWidth;
+                    overlay.style.height = screenHeight;
+                }
+            });
+
+            closeButton.addEventListener("click", () => {
+                if(dialog.getAttribute("open")){
+                    dialog.removeAttribute("open");
+                    overlay.style.display = "none";
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -7,11 +7,19 @@
         <link rel="stylesheet" type="text/css" href="style/styles.css">
         <script src="scripts/settings.js"></script>
         <title>Settings</title>
+        <style type="text/css">
+            #dark-yes, #dark-no{
+                cursor: pointer;
+            }
+            .selected{
+                text-decoration: underline;
+            }
+        </style>
     </head>
     <body>
-        <h1>Dark Mode</h1>
-        <button id="dark-yes">Turn On</button>
-        <br><br><hr><button><a href="index.html">Back</a></button>
+        <h2>Dark Mode: <span id="dark-yes">On</span>/<span id="dark-no">Off</span></h2>
+
+        <hr><button><a href="index.html">Back</a></button>
         <p id="version_number"></p>
         <script type="text/javascript">
             document.getElementById("version_number").innerHTML = `Version ${version}`;

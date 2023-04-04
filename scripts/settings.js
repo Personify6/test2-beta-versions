@@ -3,9 +3,11 @@
 */
 
 
-var version = "1.5 Pre-Release";
+var version = "1.6.beta1a";
 // This is executed before the DOM is ready
 var darkModeToggle = localStorage.getItem("dark-mode");
+var turnOn = document.getElementById("dark-yes");
+var turnOff = document.getElementById("dark-no");
 
 // Reset dark mode option using browser preference
 if(!["on", "off"].includes(darkModeToggle)){
@@ -23,29 +25,29 @@ function setOff(){
 
 window.addEventListener("load", () => {
     // We can only find these after the dom is ready
-    var turnOnOff = document.getElementById("dark-yes");
-    if (!turnOnOff) {
+    turnOn = document.getElementById("dark-yes");
+    turnOff = document.getElementById("dark-no");
+
+    if(darkModeToggle == "on"){
+        turnOn.className = "selected";
+        turnOff.classList.remove("selected");
+    } else if(darkModeToggle == "off"){
+        turnOn.classList.remove("selected");
+        turnOff.className = "selected";
+    }
+    
+    if (!turnOn || !turnOff) {
         return;
     }
 
-    switch(darkModeToggle){
-        case "on": turnOnOff.innerHTML = "Turn Off"; break;
-        case "off": turnOnOff.innerHTML = "Turn On"; break;
-    }
+    turnOn.addEventListener("click", (e) => {
+        localStorage.setItem("dark-mode", "on");
+        location.reload();
+    });
 
-    var i = 0;
-    turnOnOff.addEventListener("click", (e) => {
-        i += 1;
-        if(darkModeToggle == "off"){
-            localStorage.setItem("dark-mode", "on");
-            location.reload();
-        } else if(darkModeToggle == "on"){
-            localStorage.setItem("dark-mode", "off");
-            location.reload();
-        } else{
-            console.error("Not working");
-        }
-        console.log(i + " Event fired: " + darkModeToggle);
+    turnOff.addEventListener("click", () => {
+        localStorage.setItem("dark-mode", "off");
+        location.reload();
     });
 });
 

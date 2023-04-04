@@ -47,9 +47,13 @@
             <input name="text3">
             <button name="try3">Try It</button>
         </form><br>
+        <button id="getCode">Get Code</button><br>
         <br><button><a href="index.html">Back</a></button>
         <script type="text/javascript">
             var textOfNav = document.querySelectorAll("header div");
+            var codeLines;
+            var codeButton = document.getElementById("getCode");
+
             function myAction(value, index, array){
                 array[index].style.color = "black";
             }
@@ -74,6 +78,9 @@
             try3.addEventListener("click", function(e){
                 e.preventDefault();
                 thirdNav.innerHTML = input3.value;
+            });
+            codeButton.addEventListener("click", () => {
+                alert("Under development at the moment.");
             });
         </script>
     </body>
