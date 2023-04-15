@@ -11,8 +11,13 @@
             #overlay{
                 display: none;
                 background-color: gray;
-                opacity: 40%;
+                opacity: 18%;
                 z-index: 30;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0px;
+                top: 0px;
             }
             #alert-box{
                 width: 50%;
@@ -20,51 +25,103 @@
                 border: 2px solid gray;
                 z-index: 50;
                 overflow: auto;
+                position: absolute;
             }
-            .dark-mode #alert-box{
+            .dark-mode #alert-box, .dark-mode #alert_text{
                 background-color: #000;
                 color: white;
             }
-            .light-mode #alert-box{
+            .light-mode #alert-box, .light-mode #alert_text{
                 background-color: white;
                 color: black;
+            }
+
+            .dark-mode textarea[text-editor], .dark-mode input[type="text"]{
+                border: 2px solid white;
+                background-color: black;
+                color: white;
+            }
+            .light-mode textarea[text-editor], .light-mode input[type="text"]{
+                border: 2px solid black;
+            }
+            textarea{
+                resize: none;
+                width: 25%;
+                height: 100px;
+                overflow: auto;
             }
         </style>
     </head>
     <body>
         <h1>(Under construction)</h1>
         <h3>(You need the latest version of your browser to run this)</h3>
+
+        <dialog id="alert-box">
+            <h2 id="dialog-title">Title</h2>
+            <p id="alert-text">Hello! You can edit this text if you would like!</p>
+            <button id="close-button">Close</button>
+        </dialog>
+
+        <form>
+            <label for="title-editor">Alert Box Title: </label><input type="text" name="title-editor" id="title-editor"><br>
+
+            <label for="alert_text">Alert Box Text:</label><br><textarea text-editor name="alert_text" id="alert_text"></textarea><br>
+
+            <button type="submit" id="update-alert-box">Update Alert</button><hr><br>
+        </form>
+
         <button id="open-button">Open Alert</button><br><br>
 
         <div id="overlay"></div>
-        <dialog id="alert-box">
-            <h2>Title</h2>
-            <span id="alert-text">Hi, this is a test at the moment! In the future, you will be able to edit this alert box.</span><br><br>
-            <button id="close-button">Close</button>
-        </dialog>
         <br><button><a href="index.html">Back</a></button>
         <script type="text/javascript">
             var closeButton = document.getElementById("close-button");
             var overlay = document.getElementById("overlay");
             var openButton = document.getElementById("open-button");
             var dialog = document.getElementById("alert-box");
+            var alertCurrentText = document.getElementById("alert-text");
+            var alertPendingText = document.getElementById("alert_text");
+            var alertCurrentTitle = document.getElementById("dialog-title");
+            var alertPendingTitle = document.getElementById("title-editor");
+            var updateButton = document.getElementById("update-alert-box");
+            var defaultTitle = "Title";
+            var defaultText = "Hello! You can edit this text if you would like!";
+
             var screenWidth = window.innerWidth;
             var screenHeight = window.innerHeight;
 
+            dialog.style.width = "50%";
+            dialog.style.height = "30%";
+            dialog.style.left = (screenWidth / 2) - (dialog.style.width / 2) + "px";
+            dialog.style.top = (screenHeight / 2) - (dialog.style.height / 2) + "px";
+
+            function openDialog(){
+                dialog.setAttribute("open", "open");
+                overlay.style.display = "block";
+                overlay.style.width = screenWidth;
+                overlay.style.height = screenHeight;
+            }
+
+            updateButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                if(!alertPendingText.value || !alertPendingTitle.value){
+                    alertCurrentText.innerText = defaultText;
+                    alertCurrentTitle.innerText = defaultTitle;
+                } else {
+                    alertCurrentText.innerText = alertPendingText.value;
+                    alertCurrentTitle.innerText = alertPendingTitle.value;
+                }
+            });
+
             openButton.addEventListener("click", () => {
                 if(!dialog.getAttribute("open")){
-                    dialog.setAttribute("open", "open");
-                    overlay.style.display = "block";
-                    overlay.style.width = screenWidth;
-                    overlay.style.height = screenHeight;
+                    openDialog();
                 }
             });
 
             closeButton.addEventListener("click", () => {
-                if(dialog.getAttribute("open")){
-                    dialog.removeAttribute("open");
-                    overlay.style.display = "none";
-                }
+                dialog.removeAttribute("open");
+                overlay.style.display = "none";
             });
         </script>
     </body>
