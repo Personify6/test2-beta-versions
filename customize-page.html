@@ -2,6 +2,7 @@
 
 <html lang="en" class="neutral-mode">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
         <title>Customize your Page!</title>
         <link rel="icon" href="images/icon.png">
@@ -9,16 +10,16 @@
         <script src="scripts/settings.js"></script>
     </head>
     <body>
-        <h1>(Only Supported By HTML5)</h1>
+        <h2><span id="picker_mode" class="selected toggle_option" onclick="alert('Under development')">Colour Picker</span>/<span id="hex_mode" class="toggle_option" onclick="alert('Under development')">Hexadecimal Mode</span></h2>
         <form name="stuff">
             <label for="background">Background colour: </label>
-            <input type="color" name="background"><br>
+            <input class="picker_mode" type="color" name="background"><br>
             <label for="textcolor">Text colour: </label>
-            <input type="color" name="textcolor" value="#ffffff"><br>
+            <input class="picker_mode" type="color" name="textcolor" value="#ffffff"><br>
             <label for="buttonbackground">Button background colour: </label>
-            <input type="color" name="buttonbackground"><br>
+            <input class="picker_mode" type="color" name="buttonbackground"><br>
             <label for="buttontext">Button text colour: </label>
-            <input type="color" name="buttontext" value="#ffffff"><br>
+            <input class="picker_mode" type="color" name="buttontext" value="#ffffff"><br>
             <br><button type="submit">Try It!</button>
         </form>
         <br>

@@ -67,3 +67,9 @@ h2, h2 span{
 .light-mode p {
     color: black;
 }
+.selected{
+    text-decoration: underline;
+}
+.toggle_option{
+    cursor: pointer;
+}

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="neutral-mode">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Make Your Navigation Bar</title>
         <meta charset="utf-8">
         <link rel="icon" href="images/icon.png">
@@ -87,8 +88,22 @@
                     `<div class="option" id="third">${third.innerText}</div>`,
                     '</header>'
                 ];
+                var csscode = [
+                    "#navbar{",
+                        "background-color: #e75 ",
+                        "width: 100%;",
+                        "height: 50px;",
+                        "position: fixed;",
+                    "}",
+                    ".option{",
+                        "padding-left: 10px",
+                        "padding-top: 10px",
+                        "padding-right: 10px",
+                        "float: left",
+                    "}"
+                ];
 
-                alert("Here is the HTML code(no CSS yet, so this won't work):\n" + htmlcode.join("\n"));
+                alert("Here is the HTML code:\n" + htmlcode.join("\n") + "\n\nHere is the CSS code:\n" + csscode.join("\n"));
             });
         </script>
     </body>
