@@ -42,9 +42,15 @@
             var ballRadius = ballSize;
             var xNegative = false;
 
-            updateButton.addEventListener("click", () => {
-                ballSpeed = parseInt(document.getElementById("ball_speed").value, 10);
-                ballRadius = parseInt(document.getElementById("ball_size").value, 10);
+            updateButton.addEventListener("click", (e) => {
+                var speed_value = parseInt(document.getElementById("ball_speed").value, 10);
+                var radius_value = parseInt(document.getElementById("ball_size").value, 10)
+                if(speed_value < 1 || radius_value < 1){
+                    alert("At least one of your values are 0 or lower.");
+                } else{
+                    ballSpeed = speed_value;
+                    ballRadius = radius_value;
+                }
                 canvasBG = document.getElementById("canvas_background").value;
                 ballColour = document.getElementById("ball_background").value;
                 dx = dx < 0 ? -ballSpeed : ballSpeed;

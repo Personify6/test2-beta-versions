@@ -22,7 +22,22 @@
             input{
                 font-size: 24px;
             }
-
+            #codeHolder{
+                position: absolute;
+                right: 5px;
+                top: 70px;
+                width: 50%;
+                height: 75%;
+                overflow: auto;
+                display: none;
+                padding: 10px;
+            }
+            .light-mode #codeHolder{
+                border: 3px solid black;
+            }
+            .dark-mode #codeHolder{
+                border: 3px solid white;
+            }
         </style>
         <script src="scripts/settings.js"></script>
     </head>
@@ -48,7 +63,12 @@
             <input name="text3">
             <button name="try3">Try It</button>
         </form><br>
-        <button id="getCode">Get Code(under development)</button><br>
+        <button id="getCode">Get Code</button><br>
+        <div id="codeHolder">
+            <div id="codeBox">
+            </div>
+            <button id="closeCode">Close</button>
+        </div>
         <br><button><a href="index.html">Back</a></button>
         <script type="text/javascript">
             var textOfNav = document.querySelectorAll("header div");
@@ -68,6 +88,10 @@
             var firstNav = document.getElementById('first');
             var secondNav = document.getElementById('second');
             var thirdNav = document.getElementById('third');
+            var codeHolder = document.getElementById('codeHolder');
+            var codeBox = document.getElementById('codeBox');
+            var closeCode = document.getElementById('closeCode');
+
             try1.addEventListener("click", function(e){
                 e.preventDefault();
                 firstNav.innerHTML = input1.value;
@@ -82,28 +106,34 @@
             });
             codeButton.addEventListener("click", () => {
                 var htmlcode = [
-                    '<header>',
-                    `<div class="option" id="first">${first.innerText}</div>`,
-                    `<div class="option" id="second">${second.innerText}</div>`,
-                    `<div class="option" id="third">${third.innerText}</div>`,
+                    '<header id="navbar">',
+                        `\t<div class="option" id="first">${first.innerText}</div>`,
+                        `\t<div class="option" id="second">${second.innerText}</div>`,
+                        `\t<div class="option" id="third">${third.innerText}</div>`,
                     '</header>'
                 ];
                 var csscode = [
                     "#navbar{",
-                        "background-color: #e75 ",
-                        "width: 100%;",
-                        "height: 50px;",
-                        "position: fixed;",
+                        "\tbackground-color: #e75;",
+                        "\twidth: 100%;",
+                        "\theight: 50px;",
+                        "\tposition: fixed;",
                     "}",
                     ".option{",
-                        "padding-left: 10px",
-                        "padding-top: 10px",
-                        "padding-right: 10px",
-                        "float: left",
+                        "\tpadding-left: 10px;",
+                        "\tpadding-top: 10px;",
+                        "\tpadding-right: 10px;",
+                        "\tfloat: left;",
+                        "\tfont: 25px sans-serif;",
                     "}"
                 ];
 
-                alert("Here is the HTML code:\n" + htmlcode.join("\n") + "\n\nHere is the CSS code:\n" + csscode.join("\n"));
+                codeHolder.style.display = "block";
+                codeBox.innerText = `HTML Code:\n\n${htmlcode.join("\n")}\n\nCSS Code:\n\n${csscode.join("\n")}`;
+            });
+
+            closeCode.addEventListener("click", () => {
+                codeHolder.style.display = "none";
             });
         </script>
     </body>

@@ -8,18 +8,37 @@
         <link rel="icon" href="images/icon.png">
         <link rel="stylesheet" type="text/css" href="style/styles.css">
         <script src="scripts/settings.js"></script>
+        <style type="text/css">
+            .hex_mode{
+                display: none;
+            }
+        </style>
     </head>
     <body>
-        <h2><span id="picker_mode" class="selected toggle_option" onclick="alert('Under development')">Colour Picker</span>/<span id="hex_mode" class="toggle_option" onclick="alert('Under development')">Hexadecimal Mode</span></h2>
+        <h2><span id="picker_mode" class="selected toggle_option">Colour Picker</span>/<span id="hex_mode" class="toggle_option">Hexadecimal Mode</span></h2>
         <form name="stuff">
+            <button class="hex_mode" id="hex_help">?</button>
+
             <label for="background">Background colour: </label>
-            <input class="picker_mode" type="color" name="background"><br>
+            <input class="picker_mode" type="color" name="background">
+            <input class="hex_mode" type="text" name="hex_background" pattern="#[a-fA-F0-9]{3}|#[a-fA-F0-9]{6}">
+            <br>
+
             <label for="textcolor">Text colour: </label>
-            <input class="picker_mode" type="color" name="textcolor" value="#ffffff"><br>
+            <input class="picker_mode" type="color" name="textcolor" value="#ffffff">
+            <input class="hex_mode" type="text" name="hex_textcolor" value="#ffffff" pattern="#[a-fA-F0-9]{3}|#[a-fA-F0-9]{6}">
+            <br>
+
             <label for="buttonbackground">Button background colour: </label>
-            <input class="picker_mode" type="color" name="buttonbackground"><br>
+            <input class="picker_mode" type="color" name="buttonbackground">
+            <input class="hex_mode" type="text" name="hex_buttonbackground" pattern="#[a-fA-F0-9]{3}|#[a-fA-F0-9]{6}">
+            <br>
+
             <label for="buttontext">Button text colour: </label>
-            <input class="picker_mode" type="color" name="buttontext" value="#ffffff"><br>
+            <input class="picker_mode" type="color" name="buttontext" value="#ffffff">
+            <input class="hex_mode" type="text" name="hex_buttontext" value="#ffffff" pattern="#[a-fA-F0-9]{3}|#[a-fA-F0-9]{6}">
+            <br>
+
             <br><button type="submit">Try It!</button>
         </form>
         <br>
@@ -27,6 +46,38 @@
         <script type="text/javascript">
             var form = document.stuff;
             var buttons = document.getElementsByTagName("button");
+            var hex_help = document.getElementById("hex_help");
+            var picker_mode = document.getElementById("picker_mode"); // Toggle
+            var hex_mode = document.getElementById("hex_mode"); // Toggle
+            var picker_els = document.getElementsByClassName("picker_mode");
+            var hex_els = document.getElementsByClassName("picker_mode");
+            var mode = "picker";
+
+            hex_mode.addEventListener("click", () => {
+                mode = "hex";
+                hex_mode.className = "selected";
+                picker_mode.classList.remove("selected");
+
+                //for(var i = 0; i < picker_els.length; i++){
+                    //picker_els[i].style.display = "none";
+                //}
+                //for(var i = 0; i < hex_els.length; i++){
+                    //hex_els[i].style.display = "block";
+                //}
+            });
+            picker_mode.addEventListener("click", () => {
+                mode = "picker";
+                picker_mode.className = "selected";
+                hex_mode.classList.remove("selected");
+
+                //for(var i = 0; i < hex_els.length; i++){
+                    //hex_els[i].style.display = "none";
+                //}
+                //for(var i = 0; i < picker_els.length; i++){
+                    //picker_els[i].style.display = "block";
+                //}
+            });
+
             form.addEventListener("submit", (e) => {
                 e.preventDefault();
                 document.documentElement.style.backgroundColor = form.background.value;
