@@ -53,7 +53,6 @@
         </style>
     </head>
     <body>
-        <h1>(Under construction)</h1>
         <h3>(You need the latest version of your browser to run this)</h3>
 
         <dialog id="alert-box">
@@ -67,7 +66,11 @@
 
             <label for="alert_text">Alert Box Text:</label><br><textarea text-editor name="alert_text" id="alert_text"></textarea><br>
 
-            <button type="submit" id="update-alert-box">Update Alert</button><hr><br>
+            <label for="dialog_background">Alert Background Colour:</label><input type="color" name="dialog_background" id="dialog_background"><br>
+
+            <label for="dialog_text">Alert Text Colour:</label><input type="color" name="dialog_text" id="dialog_text" value="#0000ff"><br>
+
+            <br><button type="submit" id="update-alert-box">Update Alert</button><hr><br>
         </form>
 
         <button id="open-button">Open Alert</button><br><br>
@@ -84,6 +87,8 @@
             var alertCurrentTitle = document.getElementById("dialog-title");
             var alertPendingTitle = document.getElementById("title-editor");
             var updateButton = document.getElementById("update-alert-box");
+            var background = document.getElementById("dialog_background");
+            var text = document.getElementById("dialog_text");
             var defaultTitle = "Title";
             var defaultText = "Hello! You can edit this text if you would like!";
 
@@ -111,6 +116,12 @@
                     alertCurrentText.innerText = alertPendingText.value;
                     alertCurrentTitle.innerText = alertPendingTitle.value;
                 }
+
+                dialog.style.backgroundColor = background.value;
+                dialog.style.color = text.value;
+                alertCurrentTitle.style.color = text.value;
+                alertCurrentText.style.color = text.value;
+
             });
 
             openButton.addEventListener("click", () => {

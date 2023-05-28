@@ -19,10 +19,15 @@
     </head>
     <body>
         <label for="ball_speed">Ball Speed:</label><input name="ball_speed" id="ball_speed" type="number" value="3"><br>
+
         <label for="ball_size">Ball Size:</label><input name="ball_size" id="ball_size" type="number" value="7"><br>
+
         <label for="canvas_background">Canvas Background:</label><input type="color" name="canvas_background" id="canvas_background" value="#444464"><br>
+
         <label for="ball_background">Ball Colour:</label><input type="color" name="ball_background" id="ball_background" value="#ff0000"><br><br>
+
         <button id="apply_styles">Update</button><br><br>
+        
         <canvas id="ball_area" width="600" height="300"></canvas>
         <br><br><br>
         <button><a href="index.html" class="calculator_back">Back</a></button>
@@ -47,6 +52,8 @@
                 var radius_value = parseInt(document.getElementById("ball_size").value, 10)
                 if(speed_value < 1 || radius_value < 1){
                     alert("At least one of your values are 0 or lower.");
+                } else if(radius_value > 70 || speed_value > 50){
+                    alert("Your ball size or speed is too large.");
                 } else{
                     ballSpeed = speed_value;
                     ballRadius = radius_value;

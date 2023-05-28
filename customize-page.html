@@ -4,7 +4,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
-        <title>Customize your Page!</title>
+        <title>Customize your Page</title>
         <link rel="icon" href="images/icon.png">
         <link rel="stylesheet" type="text/css" href="style/styles.css">
         <script src="scripts/settings.js"></script>
@@ -15,10 +15,15 @@
         </style>
     </head>
     <body>
-        <h2><span id="picker_mode" class="selected toggle_option">Colour Picker</span>/<span id="hex_mode" class="toggle_option">Hexadecimal Mode</span></h2>
-        <form name="stuff">
+        <div id="option_holder">
+            <h2>
+                <span id="picker_mode" class="selected toggle_option">Colour Picker</span>/<span id="hex_mode" class="toggle_option">Hexadecimal Mode</span>
+            </h2>
             <button class="hex_mode" id="hex_help">?</button>
+        </div>
+        <br>
 
+        <form name="stuff">
             <label for="background">Background colour: </label>
             <input class="picker_mode" type="color" name="background">
             <input class="hex_mode" type="text" name="hex_background" pattern="#[a-fA-F0-9]{3}|#[a-fA-F0-9]{6}">
@@ -50,43 +55,57 @@
             var picker_mode = document.getElementById("picker_mode"); // Toggle
             var hex_mode = document.getElementById("hex_mode"); // Toggle
             var picker_els = document.getElementsByClassName("picker_mode");
-            var hex_els = document.getElementsByClassName("picker_mode");
+            var hex_els = document.getElementsByClassName("hex_mode");
             var mode = "picker";
+
+            hex_help.addEventListener("click", () => {
+                alert("A hashtag(#) followed by three or six numbers or letters from A - F. (Examples: #132145, #ad2134, #abcdef, #add)");
+            });
 
             hex_mode.addEventListener("click", () => {
                 mode = "hex";
                 hex_mode.className = "selected";
                 picker_mode.classList.remove("selected");
 
-                //for(var i = 0; i < picker_els.length; i++){
-                    //picker_els[i].style.display = "none";
-                //}
-                //for(var i = 0; i < hex_els.length; i++){
-                    //hex_els[i].style.display = "block";
-                //}
+                for(var i = 0; i < picker_els.length; i++){
+                    picker_els[i].style.display = "none";
+                }
+                for(var i = 0; i < hex_els.length; i++){
+                    hex_els[i].style.display = "inline-block";
+                }
             });
             picker_mode.addEventListener("click", () => {
                 mode = "picker";
                 picker_mode.className = "selected";
                 hex_mode.classList.remove("selected");
 
-                //for(var i = 0; i < hex_els.length; i++){
-                    //hex_els[i].style.display = "none";
-                //}
-                //for(var i = 0; i < picker_els.length; i++){
-                    //picker_els[i].style.display = "block";
-                //}
+                for(var i = 0; i < hex_els.length; i++){
+                    hex_els[i].style.display = "none";
+                }
+                for(var i = 0; i < picker_els.length; i++){
+                    picker_els[i].style.display = "inline-block";
+                }
             });
-
+            
             form.addEventListener("submit", (e) => {
                 e.preventDefault();
-                document.documentElement.style.backgroundColor = form.background.value;
-                document.documentElement.style.color = form.textcolor.value;
-                for(var i = 0; i < buttons.length; i++){
-                    buttons[i].style.backgroundColor = form.buttonbackground.value;
-                    buttons[i].style.color = form.buttontext.value;
+                if(mode == "picker"){
+                    document.documentElement.style.backgroundColor = form.background.value;
+                    document.documentElement.style.color = form.textcolor.value;
+                    for(var i = 0; i < buttons.length; i++){
+                        buttons[i].style.backgroundColor = form.buttonbackground.value;
+                        buttons[i].style.color = form.buttontext.value;
+                    }
+                    document.getElementById("back").style.color = form.buttontext.value;
+                } else{
+                    document.documentElement.style.backgroundColor = form.hex_background.value;
+                    document.documentElement.style.color = form.hex_textcolor.value;
+                    for(var i = 0; i < buttons.length; i++){
+                        buttons[i].style.backgroundColor = form.hex_buttonbackground.value;
+                        buttons[i].style.color = form.hex_buttontext.value;
+                    }
+                    document.getElementById("back").style.color = form.hex_buttontext.value;
                 }
-                document.getElementById("back").style.color = form.buttontext.value;
             });
         </script>
     </body>

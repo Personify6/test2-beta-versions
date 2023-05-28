@@ -52,15 +52,15 @@
         <br>
         <form name="textboxes">
             <label>Home Text: </label>
-            <input name="text1">
+            <input name="text1" type="text">
             <button name="try1">Try It</button>
             <br><br>
             <label>About Text: </label>
-            <input name="text2">
+            <input name="text2" type="text">
             <button name="try2">Try It</button>
             <br><br>
             <label>Contact Us Text: </label>
-            <input name="text3">
+            <input name="text3" type="text">
             <button name="try3">Try It</button>
         </form><br>
         <button id="getCode">Get Code</button><br>
@@ -72,7 +72,6 @@
         <br><button><a href="index.html">Back</a></button>
         <script type="text/javascript">
             var textOfNav = document.querySelectorAll("header div");
-            var codeLines;
             var codeButton = document.getElementById("getCode");
 
             function myAction(value, index, array){
@@ -127,9 +126,16 @@
                         "\tfont: 25px sans-serif;",
                     "}"
                 ];
+                var total_code = `HTML Code:\n\n${htmlcode.join("\n")}\n\nCSS Code:\n\n${csscode.join("\n")}`;
 
                 codeHolder.style.display = "block";
-                codeBox.innerText = `HTML Code:\n\n${htmlcode.join("\n")}\n\nCSS Code:\n\n${csscode.join("\n")}`;
+                if(window.innerWidth < 1210){
+                    codeHolder.style.display = "none";
+                    alert(total_code);
+                } else{
+                    codeHolder.style.display = "block";
+                }
+                codeBox.innerText = total_code;
             });
 
             closeCode.addEventListener("click", () => {

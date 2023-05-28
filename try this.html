@@ -18,18 +18,22 @@
             #info{
                 margin-left: 5px;
             }
-            [text]{
+            [text="normal"]{
                 background-color: black !important;
                 color: white !important;
+            }
+            [text="removal"]{
+                background-color: black !important;
+                color: red !important;
             }
         </style>
         <script src="scripts/settings.js"></script>
     </head>
     <body>
-        <h2 text>(!)To be moved to "Customize your Page." This page will be deleted after some time in a later update.</h2>
+        <h2 text="removal">(!)Available in "Customize your Page." This page will be deleted in Version 1.7.</h2>
         <form name="try_this">
-            <p please text>Please enter a hexadecimal pattern:</p>
-            <input name="code" title="A hashtag followed by six or three numbers or letters from A-F (Examples: #FE3152, #45124A)" pattern="#[a-fA-F0-9]{3}|#[a-fA-F0-9]{6}">
+            <p please text="normal">Please enter a hexadecimal pattern:</p>
+            <input name="code" type="text" title="A hashtag followed by six or three numbers or letters from A-F (Examples: #FE3152, #45124A)" pattern="#[a-fA-F0-9]{3}|#[a-fA-F0-9]{6}">
             <button type="submit">Try It!</button><button id="info">?</button>
         </form><br>
         <button><a href="index.html">Back</a></button>

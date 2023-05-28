@@ -73,9 +73,16 @@ h2, h2 span{
 .toggle_option:hover{
     cursor: pointer;
 }
-.light-mode input[type="text"]{
-    border: 3px solid black;
+.light-mode input[type="text"], .light-mode input[type="number"]{
+    border: 3px solid black !important;
+    background-color: white !important;
+    color: black !important;
 }
-.dark-mode input[type="text"]{
-    border: 3px solid white;
+.dark-mode input[type="text"], .dark-mode input[type="number"]{
+    border: 3px solid white !important;
+    background-color: black !important;
+    color: white !important;
+}
+[removal]{
+    color: red !important;
 }
