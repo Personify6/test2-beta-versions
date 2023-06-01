@@ -7,4 +7,4 @@ These are the beta versions of Test2 Version 1.6:
 - [x] Version 1.6.beta3
 - [x] Version 1.6.beta4
 - [x] Version 1.6.beta5(Final Beta)
-- [ ] Version 1.6.RC1
+- [x] Version 1.6.RC1
