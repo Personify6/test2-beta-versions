@@ -71,7 +71,7 @@ h2, h2 span{
     text-decoration: underline;
 }
 .toggle_option:hover{
-    cursor: pointer;
+    cursor: pointer !important;
 }
 .light-mode input[type="text"], .light-mode input[type="number"]{
     border: 3px solid black !important;
