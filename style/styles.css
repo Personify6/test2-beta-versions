@@ -86,3 +86,14 @@ h2, h2 span{
 [removal]{
     color: red !important;
 }
+.noscripttext{
+    text-decoration: underline;
+    font-weight: bold;
+    color: red;
+    background-color: black;
+    position: fixed;
+    z-index: 100000;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
