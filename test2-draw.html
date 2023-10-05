@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Test2 Draw</title>
+        <link rel="icon" href="images/icon.png">
+        <link rel="stylesheet" type="text/css" href="style/styles.css">
+        <script src="scripts/settings.js"></script>
+        <style type="text/css">
+            [dev-message]{
+                color: #f0f;
+                font-size: 1.1em;
+                text-decoration: underline;
+            }
+            .dark-mode canvas{
+                border: 2px solid white;
+            }
+            .light-mode canvas{
+                border: 2px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <noscript>
+            <div class="noscriptoverlay"></div>
+            <h2 class="noscripttext">This website uses JavaScript, which you have not enabled. Please enable JavaScript to use this website.</h2>
+        </noscript>
+        <h3 dev-message>This activity is under development. It may not contain all of its features and may not function properly.</h3>
+        <canvas id="main_canvas" width="560" height="400"></canvas>
+        <br><button><a href="index.html">Back</a></button>
+        <script type="text/javascript">
+            var canvas = document.getElementById("main_canvas");
+            function draw(){
+                var brushes = document.querySelectorAll('div[draw="true"]');
+                function doDraw(e){
+                    var brushSize = 30;
+                    var drawing = document.createElement("div");
+                    drawing.style.position = "absolute";
+                    drawing.setAttribute("draw", "true");
+                    drawing.style.left = (e.clientX - brushSize / 2) + "px";
+                    drawing.style.top = (e.clientY - brushSize / 2) + "px";
+                    drawing.style.width = brushSize + "px";
+                    drawing.style.height = brushSize + "px";
+                    drawing.style.backgroundColor = "red";
+                    drawing.style.borderRadius = brushSize + "px";
+                    document.body.appendChild(drawing);
+                }
+                canvas.addEventListener("mousedown", doDraw);
+                for (var i = 0; i < brushes.length; i++) {
+                    brushes[i].addEventListener("mousedown", doDraw);
+                }
+            }
+            canvas.addEventListener("mouseover", draw);
+        </script>
+    </body>
+</html>

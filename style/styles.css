@@ -97,3 +97,7 @@ h2, h2 span{
     height: 100%;
     margin: 0;
 }
+[message-id="1"]{
+    font-style: italic;
+    font-size: 0.87em;
+}

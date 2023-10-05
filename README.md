@@ -5,8 +5,8 @@ Welcome to the beta versions of Test2. Here, there are experimental features for
 # The beta versions of Test2
 These are the beta versions of Test2 Version 1.7:
 - [x] Version 1.7.beta1
-- [x] Version 1.7.beta2(Current)
-- [ ] Version 1.7.beta3
+- [x] Version 1.7.beta2
+- [x] Version 1.7.beta3(Current)
 - [ ] Version 1.7.beta4
 - [ ] Version 1.7.beta5
 - [ ] Version 1.7.RC1
