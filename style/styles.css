@@ -96,6 +96,16 @@ h2, h2 span{
     width: 100%;
     height: 100%;
     margin: 0;
+    text-align: center;
+}
+.noscriptoverlay {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 1000;
 }
 [message-id="1"]{
     font-style: italic;

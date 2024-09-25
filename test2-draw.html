@@ -19,6 +19,12 @@
             .light-mode canvas{
                 border: 2px solid black;
             }
+            #brush_size{
+                width: 50px;
+            }
+            canvas{
+                overflow: hidden;
+            }
         </style>
     </head>
     <body>
@@ -27,31 +33,24 @@
             <h2 class="noscripttext">This website uses JavaScript, which you have not enabled. Please enable JavaScript to use this website.</h2>
         </noscript>
         <h3 dev-message>This activity is under development. It may not contain all of its features and may not function properly.</h3>
-        <canvas id="main_canvas" width="560" height="400"></canvas>
+        <h4>Right now, the drawing hasn't been re-implemented yet.</h4>
+        <div id="toolbar">
+            <label for="brush_col">Brush Colour:</label><input type="color" name="brush_col" id="brush_col" value="#ffffff">
+            <label for="brush_size">Brush Size:</label><input type="number" id="brush_size" name="brush_size" value="3">
+            <button id="clear_button">Clear</button>
+        </div>
+        <canvas draggable="true" id="main_canvas" width="560" height="400"></canvas>
         <br><button><a href="index.html">Back</a></button>
         <script type="text/javascript">
             var canvas = document.getElementById("main_canvas");
-            function draw(){
-                var brushes = document.querySelectorAll('div[draw="true"]');
-                function doDraw(e){
-                    var brushSize = 30;
-                    var drawing = document.createElement("div");
-                    drawing.style.position = "absolute";
-                    drawing.setAttribute("draw", "true");
-                    drawing.style.left = (e.clientX - brushSize / 2) + "px";
-                    drawing.style.top = (e.clientY - brushSize / 2) + "px";
-                    drawing.style.width = brushSize + "px";
-                    drawing.style.height = brushSize + "px";
-                    drawing.style.backgroundColor = "red";
-                    drawing.style.borderRadius = brushSize + "px";
-                    document.body.appendChild(drawing);
-                }
-                canvas.addEventListener("mousedown", doDraw);
-                for (var i = 0; i < brushes.length; i++) {
-                    brushes[i].addEventListener("mousedown", doDraw);
-                }
-            }
-            canvas.addEventListener("mouseover", draw);
+            var ctx = canvas.getContext("2d");
+            var clear = document.getElementById("clear_button");
+            
+            clear.addEventListener("click", () => {
+                ctx.clear();
+                ctx.stroke();
+                ctx.beginPath();
+            });
         </script>
     </body>
 </html>
