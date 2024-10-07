@@ -7,8 +7,8 @@ Welcome to the beta versions of Test2. Here, there are experimental features for
 - [x] Version 1.7.beta1
 - [x] Version 1.7.beta2
 - [x] Version 1.7.beta3
-- [x] Version 1.7.beta4(Current)
-- [ ] Version 1.7.beta5
+- [x] Version 1.7.beta4
+- [x] Version 1.7.beta5(Current)
 - [ ] Version 1.7.RC1
 
 # Test2 1.8 will have a complete redesign of the UI and code.

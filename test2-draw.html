@@ -20,10 +20,13 @@
                 border: 2px solid black;
             }
             #brush_size{
-                width: 50px;
+                width: 30%;
             }
             canvas{
                 overflow: hidden;
+                margin: 0;
+                padding: 0;
+                
             }
         </style>
     </head>
@@ -32,24 +35,82 @@
             <div class="noscriptoverlay"></div>
             <h2 class="noscripttext">This website uses JavaScript, which you have not enabled. Please enable JavaScript to use this website.</h2>
         </noscript>
-        <h3 dev-message>This activity is under development. It may not contain all of its features and may not function properly.</h3>
-        <h4>Right now, the drawing hasn't been re-implemented yet.</h4>
+
+        <button><a href="index.html">Back</a></button><br><br>
+        
         <div id="toolbar">
-            <label for="brush_col">Brush Colour:</label><input type="color" name="brush_col" id="brush_col" value="#ffffff">
-            <label for="brush_size">Brush Size:</label><input type="number" id="brush_size" name="brush_size" value="3">
+            <label for="brush_col">Brush Colour:</label>
+            <input type="color" name="brush_col" id="brush_col" value="#ffffff">
+
+            <label for="brush_size">Brush Size:</label>
+            <input type="range" id="brush_size" name="brush_size" value="10" min="1">
+            <span id="brush_val">10</span>
+
             <button id="clear_button">Clear</button>
         </div>
-        <canvas draggable="true" id="main_canvas" width="560" height="400"></canvas>
-        <br><button><a href="index.html">Back</a></button>
+        <canvas id="main_canvas"></canvas>
+        
         <script type="text/javascript">
             var canvas = document.getElementById("main_canvas");
             var ctx = canvas.getContext("2d");
             var clear = document.getElementById("clear_button");
-            
-            clear.addEventListener("click", () => {
-                ctx.clear();
+            var brushSize = document.getElementById("brush_size");
+            var brushCol = document.getElementById("brush_col");
+            var defaultCol = localStorage.getItem("dark-mode") == "on" ? "#ffffff" : "#000000";
+            var fillBG = localStorage.getItem("dark-mode") == "on" ? "#000000" : "#ffffff";
+            var brushVal = document.getElementById("brush_val");
+            let painting = false;
+
+            brushCol.value = defaultCol;
+
+            canvas.width = window.innerWidth - 80;
+            canvas.height = window.innerHeight;
+
+            ctx.fillStyle = fillBG;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            function draw(e) {
+                const canvasRect = canvas.getBoundingClientRect();
+                const xPos = e.clientX - canvasRect.left;  // Adjust X relative to canvas
+                const yPos = e.clientY - canvasRect.top;   // Adjust Y relative to canvas
+
+                if (!painting) return;
+
+                ctx.strokeStyle = brushCol.value;
+                ctx.lineWidth = brushSize.value;
+                ctx.lineCap = "round";
+                ctx.lineTo(xPos, yPos);
                 ctx.stroke();
                 ctx.beginPath();
+                ctx.moveTo(xPos, yPos);
+            }
+
+            function stop(e){
+                painting = false;
+                ctx.beginPath();
+            }
+
+            brushSize.addEventListener("input", () => {
+                brushVal.textContent = brushSize.value;
+            });
+
+            clear.addEventListener("click", () => {
+                ctx.fillStyle = fillBG;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.beginPath();
+            });
+
+            canvas.addEventListener("mousedown", () => {
+                painting = true;
+            });
+
+            canvas.addEventListener("mouseup", stop);
+            canvas.addEventListener("mouseleave", stop);
+            canvas.addEventListener("mousemove", draw);
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth - 80;
+                canvas.height = window.innerHeight;
             });
         </script>
     </body>

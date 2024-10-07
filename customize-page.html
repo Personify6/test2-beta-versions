@@ -24,7 +24,7 @@
                 <span id="picker_mode" class="selected toggle_option">Colour Picker</span>/<span id="hex_mode" class="toggle_option">Hexadecimal Mode</span>
             </h2>
             <button class="hex_mode" id="hex_help">?</button>
-            <button class="hex_mode" id="random_colour">Random Hexadecimal Code</button>
+            <button class="hex_mode" id="random_colour">Random Hexadecimal Codes</button>
         </div>
         <form name="stuff">
             <br class="hex_mode">
@@ -63,14 +63,29 @@
             var rand_col = document.getElementById("random_colour");
             var mode = "picker";
 
+            function applyHexVals(){
+                document.documentElement.style.backgroundColor = form.hex_background.value;
+                document.documentElement.style.color = form.hex_textcolor.value;
+                for(var i = 0; i < buttons.length; i++){
+                    buttons[i].style.backgroundColor = form.hex_buttonbackground.value;
+                    buttons[i].style.color = form.hex_buttontext.value;
+                }
+
+                document.getElementById("back").style.color = form.hex_buttontext.value;
+            }
+
             rand_col.addEventListener("click", () => {
                 var possible_chars = ["a", "b", "c", "d", "e", "f", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-                var hex_code = "#";
+                for(var i = 0; i < hex_els.length; i++){
+                    var hex_code = "#";
 
-                for(var i = 0; i < 6; i++){
-                    hex_code += possible_chars[Math.floor(Math.random() * possible_chars.length)];
+                    for(var j = 0; j < 6; j++){
+                        hex_code += possible_chars[Math.floor(Math.random() * possible_chars.length)];
+                    }
+
+                    hex_els[i].value = hex_code;
+                    applyHexVals();
                 }
-                alert(hex_code);
             });
 
             hex_help.addEventListener("click", () => {
@@ -113,13 +128,7 @@
                     }
                     document.getElementById("back").style.color = form.buttontext.value;
                 } else{
-                    document.documentElement.style.backgroundColor = form.hex_background.value;
-                    document.documentElement.style.color = form.hex_textcolor.value;
-                    for(var i = 0; i < buttons.length; i++){
-                        buttons[i].style.backgroundColor = form.hex_buttonbackground.value;
-                        buttons[i].style.color = form.hex_buttontext.value;
-                    }
-                    document.getElementById("back").style.color = form.hex_buttontext.value;
+                    applyHexVals();
                 }
             });
         </script>
