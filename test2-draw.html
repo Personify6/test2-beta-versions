@@ -36,7 +36,7 @@
             <h2 class="noscripttext">This website uses JavaScript, which you have not enabled. Please enable JavaScript to use this website.</h2>
         </noscript>
 
-        <button><a href="index.html">Back</a></button><br><br>
+        <button><a id="backButton">Back</a></button><br><br>
         
         <div id="toolbar">
             <label for="brush_col">Brush Colour:</label>
@@ -59,6 +59,7 @@
             var defaultCol = localStorage.getItem("dark-mode") == "on" ? "#ffffff" : "#000000";
             var fillBG = localStorage.getItem("dark-mode") == "on" ? "#000000" : "#ffffff";
             var brushVal = document.getElementById("brush_val");
+            var backButton = document.getElementById("backButton");
             let painting = false;
 
             brushCol.value = defaultCol;
@@ -84,6 +85,13 @@
                 ctx.beginPath();
                 ctx.moveTo(xPos, yPos);
             }
+
+            backButton.addEventListener("click", () => {
+                var alert1 = confirm("Are you sure you want to exit?");
+                if(alert1){
+                    location.href = "index.html";
+                }
+            });
 
             function stop(e){
                 painting = false;
