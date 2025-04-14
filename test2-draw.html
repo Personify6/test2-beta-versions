@@ -5,7 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Test2 Draw</title>
         <link rel="icon" href="images/icon.png">
-        <link rel="stylesheet" type="text/css" href="style/styles.css">
+        <link rel="stylesheet" type="text/css" href="styles/base.css">
+        <link rel="stylesheet" class="themeLoader" type="text/css" href="styles/dark/dark.css">
         <script src="scripts/settings.js"></script>
         <style type="text/css">
             [dev-message]{
@@ -56,8 +57,8 @@
             var clear = document.getElementById("clear_button");
             var brushSize = document.getElementById("brush_size");
             var brushCol = document.getElementById("brush_col");
-            var defaultCol = localStorage.getItem("dark-mode") == "on" ? "#ffffff" : "#000000";
-            var fillBG = localStorage.getItem("dark-mode") == "on" ? "#000000" : "#ffffff";
+            var defaultCol = localStorage.getItem("theme") == "dark" ? "#ffffff" : "#000000";
+            var fillBG = localStorage.getItem("theme") == "dark" ? "#000000" : "#ffffff";
             var brushVal = document.getElementById("brush_val");
             var backButton = document.getElementById("backButton");
             let painting = false;

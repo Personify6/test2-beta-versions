@@ -3,24 +3,32 @@
 */
 
 
-var version = "1.7.rc1";
+var version = "1.8.beta1";
+
 // This is executed before the DOM is ready
-var darkModeToggle = localStorage.getItem("dark-mode");
+var theme = localStorage.getItem("theme");
 var turnOn = document.getElementById("dark-yes");
 var turnOff = document.getElementById("dark-no");
 
+// Stylesheet loader
+var selectedStyles = document.getElementsByClassName("themeLoader");
+
 // Reset dark mode option using browser preference
-if(!["on", "off"].includes(darkModeToggle)){
-    darkModeToggle = window.matchMedia("(prefers-color-scheme: dark)").matches ? "on" : "off";
-    localStorage.setItem("dark-mode", darkModeToggle);
+if(!["dark", "light"].includes(theme)){
+    theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    localStorage.setItem("theme", theme);
 }
 
 function setOn(){
-    document.documentElement.className="dark-mode";
+    for(var i = 0; i < selectedStyles.length; i++){
+        selectedStyles[i].setAttribute("href", "styles/dark/dark.css");
+    }
 }
 
 function setOff(){
-    document.documentElement.className="light-mode";
+    for(var i = 0; i < selectedStyles.length; i++){
+        selectedStyles[i].setAttribute("href", "styles/light/light.css");
+    }
 }
 
 window.addEventListener("load", () => {
@@ -28,10 +36,11 @@ window.addEventListener("load", () => {
     turnOn = document.getElementById("dark-yes");
     turnOff = document.getElementById("dark-no");
 
-    if(darkModeToggle == "on"){
+    if(theme == "dark"){
         turnOn.className = "selected";
         turnOff.classList.remove("selected");
-    } else if(darkModeToggle == "off"){
+
+    } else if(theme == "light"){
         turnOn.classList.remove("selected");
         turnOff.className = "selected";
     }
@@ -41,18 +50,18 @@ window.addEventListener("load", () => {
     }
 
     turnOn.addEventListener("click", (e) => {
-        localStorage.setItem("dark-mode", "on");
+        localStorage.setItem("theme", "dark");
         location.reload();
     });
 
     turnOff.addEventListener("click", () => {
-        localStorage.setItem("dark-mode", "off");
+        localStorage.setItem("theme", "light");
         location.reload();
     });
 });
 
-function onOrOff(onOrOff1){
-    if (onOrOff1 === "on") {
+function onOrOff(reqTheme){
+    if (reqTheme === "dark") {
         setOn();
         return;
     }
@@ -60,4 +69,4 @@ function onOrOff(onOrOff1){
     setOff();
 }
 
-onOrOff(darkModeToggle);
+onOrOff(theme);

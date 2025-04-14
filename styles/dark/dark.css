@@ -1,0 +1,33 @@
+body {
+    background-color: #121212;
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+button, input[type="button"] {
+    background-color: #454545;
+    border-radius: 5px;
+    border-width: 0;
+    color: white;
+}
+
+button:hover, input[type="button"]:hover {
+    background-color: #656565;
+    cursor: pointer;
+}
+
+input:not([type="button"], [type="color"]), textarea{
+    border: 3px solid white;
+    background-color: #121212;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Test2 Draw */
+
+#main_canvas {
+    border: 3px solid white;
+}

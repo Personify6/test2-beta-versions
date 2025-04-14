@@ -5,12 +5,9 @@
         <meta charset="utf-8">
         <title>Ball Bouncer</title>
         <link rel="icon" href="images/icon.png">
-        <link rel="stylesheet" type="text/css" href="style/styles.css">
+        <link rel="stylesheet" type="text/css" href="styles/base.css">
+        <link rel="stylesheet" class="themeLoader" type="text/css" href="styles/dark/dark.css">
         <style type="text/css">
-            .calculator_back {
-                color: #000 !important;
-                z-index: 20;
-            }
             #ball_area {
                 background-color: #444464;
             }
@@ -49,7 +46,7 @@
             var x = canvas.width / 2;
             var y = canvas.height / 2;
             var dx = ballSpeed;
-            var dy = ballSpeed * -1;
+            var dy = (dx / 2) * -1;
             var ballRadius = ballSize;
             var xNegative = false;
 
@@ -65,6 +62,7 @@
                 canvasBG = document.getElementById("canvas_background").value;
                 ballColour = document.getElementById("ball_background").value;
                 dx = dx < 0 ? -ballSpeed : ballSpeed;
+                dy = (dx / 2);
             }
 
             updateButton.addEventListener("click", updateBall);

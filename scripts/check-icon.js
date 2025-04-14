@@ -1,14 +1,15 @@
-var darkIsOn = localStorage.getItem("dark-mode");
-var iconSet = document.querySelector("[settings]");
+var theme = localStorage.getItem("theme");
+var iconSet = document.getElementById("settings-icon");
 
-if(!darkIsOn){
-    localStorage.setItem("dark-mode", "off");
+if(!theme){
+    systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    localStorage.setItem("theme", systemTheme);
 }
 
-darkIsOn = localStorage.getItem("dark-mode");
+theme = localStorage.getItem("theme");
 
-if(darkIsOn == "off"){
+if(theme == "light"){
     iconSet.src = "images/settings-icon.png";
-} else if(darkIsOn == "on"){
+} else if(theme == "dark"){
     iconSet.src = "images/settings-icon-dark.png";
 }

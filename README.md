@@ -2,7 +2,7 @@ These are the beta versions for Test2. This is where experimental features are t
 
 # Plans for future updates:
 
-- Complete Redesign(Planned For Test2 1.8)
+- Complete Redesign(Planned For This Update)
 - Upgraded Calculator
 - Additional Small Features for Different Activites
-- Changelog Creator(Planned For Test2 1.8 or 1.9)
+- Changelog Creator(Planned For This Update or 1.9)

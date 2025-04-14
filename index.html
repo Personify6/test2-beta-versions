@@ -5,18 +5,8 @@
         <title>Test2</title>
         <meta charset="utf-8">
         <link rel="icon" href="images/icon.png">
-        <link rel="stylesheet" type="text/css" href="style/styles.css">
-        <style type="text/css">
-            h1{
-                text-align: center;
-            }
-            .main-title{
-                text-decoration: underline;
-            }
-            a[development]{
-                color: #f0f;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="styles/base.css">
+        <link rel="stylesheet" class="themeLoader" type="text/css" href="styles/dark/dark.css">
         <script src="scripts/settings.js"></script>
     </head>
     <body>
@@ -24,17 +14,25 @@
             <div class="noscriptoverlay"></div>
             <h2 class="noscripttext">This website uses JavaScript, which you have not enabled. Please enable JavaScript to use this website.</h2>
         </noscript>
-        <a href="settings.html">
-            <img settings width="50" height="50" src="images/settings-icon.png" alt="Settings">
-        </a>
-        <h1 class="main-title">Test2</h1>
-        <a href="makeYourNav.html">Make Your Navigation Bar</a><br>
-        <a href="calculator.html">Calculator</a><br>
-        <a href="customize-page.html">Customize your page</a><br>
-        <a href="ball_bouncer.html">Ball Bouncer</a><br>
-        <a href="alert-maker.html">Alert Maker</a><br>
-        <a href="test2-draw.html">Test2 Draw</a><br>
-        <p message-id="1">New activities coming soon in the future...</p>
+
+        <div class="title-holder">
+            <img src="images/icon.png" alt="Icon" width="48" height="48">
+            <h1 class="main-title">Test2</h1>
+            <a href="settings.html">
+                <img id="settings-icon" width="50" height="50" src="images/settings-icon.png" alt="Settings">
+            </a>
+        </div>
+        
+        <div class="activityHolder">
+            <button class="activityButton"><a href="makeYourNav.html">Make Your Navigation Bar</a></button>
+            <button class="activityButton"><a href="calculator.html">Calculator</a></button>
+            <button class="activityButton"><a href="customize-page.html">Customize Your Page</a></button>
+            <button class="activityButton"><a href="ball_bouncer.html">Ball Bouncer</a></button>
+            <button class="activityButton"><a href="alert-maker.html">Alert Maker</a></button>
+            <button class="activityButton"><a href="test2-draw.html">Test2 Draw</a></button>
+        </div>
+        
+
         <script src="scripts/check-icon.js"></script>
     </body>
 </html>

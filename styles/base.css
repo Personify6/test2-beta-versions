@@ -1,0 +1,125 @@
+/* General */
+
+:root{
+    --default-font: Arial;
+}
+
+* {
+    font-family: var(--default-font);
+    font-size: 1.25rem;
+}
+
+/* Misc */
+
+button a {
+    text-decoration: none;
+}
+
+
+.selected {
+    text-decoration: underline;
+}
+
+.toggle_option {
+    cursor: pointer;
+}
+
+/* Main page */
+
+.activityHolder {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    justify-items: center;
+}
+
+.activityButton {
+    width: 100%;
+}
+
+.title-holder {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px;
+}
+
+.main-title {
+    text-decoration: underline;
+    text-align: center;
+    margin: 0;
+}
+
+#settings-icon {
+    float: right;
+}
+
+/* Font sizes */
+
+button {
+    font-size: 1.2rem;
+    padding: 5px;
+    cursor: pointer;
+}
+
+h1{
+    font-size: 2.2rem;
+}
+
+h2, h2 span{
+    font-size: 1.4rem;
+}
+
+#version_number {
+    font-size: 0.8em;
+}
+
+.toOtherPage {
+    font-size: 0.87em;
+}
+
+/* Settings icon */
+
+[settings]{
+    float: right;
+    position: relative;
+    bottom: 20px;
+}
+
+/* Tags for removal/development */
+
+[removal] {
+    color: red !important;
+}
+
+[development] {
+    color: #f0f !important;
+}
+
+/* If user does not have JavaScript Enabled */
+
+.noscripttext {
+    text-decoration: underline;
+    font-weight: bold;
+    color: red;
+    background-color: black;
+    position: fixed;
+    z-index: 100000;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+.noscriptoverlay {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 1000;
+}

@@ -6,7 +6,8 @@
         <meta charset="utf-8">
         <title>Customize your Page</title>
         <link rel="icon" href="images/icon.png">
-        <link rel="stylesheet" type="text/css" href="style/styles.css">
+        <link rel="stylesheet" type="text/css" href="styles/base.css">
+        <link rel="stylesheet" class="themeLoader" type="text/css" href="styles/dark/dark.css">
         <script src="scripts/settings.js"></script>
         <style type="text/css">
             .hex_mode{
@@ -52,6 +53,7 @@
         </form>
         <br>
         <button><a id="back" href="index.html">Back</a></button>
+
         <script type="text/javascript">
             var form = document.stuff;
             var buttons = document.getElementsByTagName("button");
@@ -66,6 +68,9 @@
             function applyHexVals(){
                 document.documentElement.style.backgroundColor = form.hex_background.value;
                 document.documentElement.style.color = form.hex_textcolor.value;
+                document.body.style.backgroundColor = form.hex_background.value;
+                document.body.style.color = form.hex_textcolor.value;
+
                 for(var i = 0; i < buttons.length; i++){
                     buttons[i].style.backgroundColor = form.hex_buttonbackground.value;
                     buttons[i].style.color = form.hex_buttontext.value;
@@ -122,6 +127,9 @@
                 if(mode == "picker"){
                     document.documentElement.style.backgroundColor = form.background.value;
                     document.documentElement.style.color = form.textcolor.value;
+                    document.body.style.backgroundColor = form.background.value;
+                    document.body.style.color = form.textcolor.value;
+
                     for(var i = 0; i < buttons.length; i++){
                         buttons[i].style.backgroundColor = form.buttonbackground.value;
                         buttons[i].style.color = form.buttontext.value;
